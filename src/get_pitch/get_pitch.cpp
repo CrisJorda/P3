@@ -16,10 +16,6 @@
 using namespace std;
 using namespace upc;
 
-namespace par {
-  float rth;
-}
-
 static const char USAGE[] = R"(
 get_pitch - Pitch Detector 
 
@@ -46,7 +42,7 @@ int main(int argc, const char *argv[]) {
 	/// \TODO 
 	///  Modify the program syntax and the call to **docopt()** in order to
 	///  add options and arguments to the program.
-  /// \DONE Added thresholds for power and correlation in 1 and correlation in 'lag'
+  /// \DONE Added thresholds for power and correlation in and correlation in 'lag'
     std::map<std::string, docopt::value> args = docopt::docopt(USAGE,
         {argv + 1, argv + argc},	// array of arguments, without the program name
         true,    // show help if requested

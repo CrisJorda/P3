@@ -6,11 +6,6 @@
 #include <vector>
 #include <algorithm>
 
-/// Name space of the command parameters
-namespace par {
-  extern float rth;
-}
-
 namespace upc {
   const float MIN_F0 = 50.0F;    ///< Minimum value of pitch in Hertzs
   const float MAX_F0 = 500.0F; ///< Maximum value of pitch in Hertzs
