@@ -6,9 +6,14 @@
 #include <vector>
 #include <algorithm>
 
+/// Name space of the command parameters
+namespace par {
+  extern float rth;
+}
+
 namespace upc {
-  const float MIN_F0 = 20.0F;    ///< Minimum value of pitch in Hertzs
-  const float MAX_F0 = 10000.0F; ///< Maximum value of pitch in Hertzs
+  const float MIN_F0 = 50.0F;    ///< Minimum value of pitch in Hertzs
+  const float MAX_F0 = 500.0F; ///< Maximum value of pitch in Hertzs
 
   ///
   /// PitchAnalyzer: class that computes the pitch (in Hz) from a signal frame.
@@ -16,6 +21,9 @@ namespace upc {
   ///
   class PitchAnalyzer {
   public:
+    float rth;
+    float pth;
+    float dth;
 	/// Wndow type
     enum Window {
 		RECT, 						///< Rectangular window

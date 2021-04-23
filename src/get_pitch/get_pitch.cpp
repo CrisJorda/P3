@@ -16,6 +16,10 @@
 using namespace std;
 using namespace upc;
 
+namespace par {
+  float rth;
+}
+
 static const char USAGE[] = R"(
 get_pitch - Pitch Detector 
 
@@ -25,8 +29,11 @@ Usage:
     get_pitch --version
 
 Options:
-    -h, --help  Show this screen
-    --version   Show the version of the project
+    -h, --help                Show this screen
+    --version                 Show the version of the projects       
+    -r FLOAT, --rth=FLOAT     Correlation threshold [default: 0]
+    -p FLOAT, --pth=FLOAT     Power threshold in dB [default: 6]
+    -d FLOAT, --dth=FLOAT     Period correlation threshold [default: 0.475]
 
 Arguments:
     input-wav   Wave file with the audio signal
@@ -39,6 +46,7 @@ int main(int argc, const char *argv[]) {
 	/// \TODO 
 	///  Modify the program syntax and the call to **docopt()** in order to
 	///  add options and arguments to the program.
+  /// \DONE Added thresholds for power and correlation in 1 and correlation in 'lag'
     std::map<std::string, docopt::value> args = docopt::docopt(USAGE,
         {argv + 1, argv + argc},	// array of arguments, without the program name
         true,    // show help if requested
@@ -46,7 +54,10 @@ int main(int argc, const char *argv[]) {
 
 	std::string input_wav = args["<input-wav>"].asString();
 	std::string output_txt = args["<output-txt>"].asString();
-
+  float rth = stof(args["--rth"].asString());
+  float pth = stof(args["--pth"].asString());
+  float dth = stof(args["--dth"].asString());
+  
   // Read input sound file
   unsigned int rate;
   vector<float> x;
@@ -60,7 +71,9 @@ int main(int argc, const char *argv[]) {
 
   // Define analyzer
   PitchAnalyzer analyzer(n_len, rate, PitchAnalyzer::HAMMING, 50, 500);
-
+  analyzer.rth = rth;
+  analyzer.pth = pth;
+  analyzer.dth = dth;
   /// \TODO
   /// Preprocess the input signal in order to ease pitch estimation. For instance,
   /// central-clipping or low pass filtering may be used.
