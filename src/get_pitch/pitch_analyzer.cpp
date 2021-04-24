@@ -43,7 +43,7 @@ namespace upc
         window[n] = 0.54 - 0.46 * cos((2 * M_PI * n) / (frameLen));
       }
       break;
-      /// \DONE Hamming window computed
+      /// \DONE Hamming window computed.
     case RECT:
     default:
       window.assign(frameLen, 1);
@@ -69,7 +69,7 @@ namespace upc
     /// * You can use the standard features (pot, r1norm, rmaxnorm),
     ///   or compute and use other ones.
     /// \DONE Used pot < 6 dB and rmaxnorm < 0.475.
-    return (pot < this->pth && rmaxnorm < this->dth);
+    return (/*r1norm < this->rth &&*/ pot < this->pth && rmaxnorm < this->dth);
   }
 
   float PitchAnalyzer::compute_pitch(vector<float> &x) const
