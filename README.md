@@ -24,15 +24,11 @@ Ejercicios básicos
     }
     ```
 
-   * Inserte una gŕafica donde, en un *subplot*, se vea con claridad la señal temporal de un segmento de
-     unos 30 ms de un fonema sonoro y su periodo de pitch; y, en otro *subplot*, se vea con claridad la
-	 autocorrelación de la señal y la posición del primer máximo secundario.
+   * Inserte una gŕafica donde, en un *subplot*, se vea con claridad la señal temporal de un segmento de unos 30 ms de un fonema sonoro y su periodo de pitch; y, en otro *subplot*, se vea con claridad la autocorrelación de la señal y la posición del primer máximo secundario.
 
-	 NOTA: es más que probable que tenga que usar Python, Octave/MATLAB u otro programa semejante para
-	 hacerlo. Se valorará la utilización de la librería matplotlib de Python.
+	 NOTA: es más que probable que tenga que usar Python, Octave/MATLAB u otro programa semejante para hacerlo. Se valorará la utilización de la librería matplotlib de Python.
 
-   * Determine el mejor candidato para el periodo de pitch localizando el primer máximo secundario de la
-     autocorrelación. Inserte a continuación el código correspondiente.
+   * Determine el mejor candidato para el periodo de pitch localizando el primer máximo secundario de la autocorrelación. Inserte a continuación el código correspondiente.
 
    * Implemente la regla de decisión sonoro o sordo e inserte el código correspondiente.
 

@@ -19,7 +19,7 @@ namespace upc {
     float rth;
     float pth;
     float dth;
-	/// Wndow type
+	/// Window type
     enum Window {
 		RECT, 						///< Rectangular window
 		HAMMING						///< Hamming window
