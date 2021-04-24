@@ -128,6 +128,11 @@ Ejercicios de ampliación
     (AMDF), etc.
   * Optimización **demostrable** de los parámetros que gobiernan el detector, en concreto, de los que
     gobiernan la decisión sonoro/sordo.
+
+    Para optimizar los parámetros hemos usado los scripts `optimize_vad.sh` y `getBestParameters.m`, aprovechando buena parte de ellos de la práctica anterior. El primer script ejecuta varias veces `get_pitch` y `pitch_evaluate` para distintos valores de los 3 thresholds comentados anteriormente, y pasa el resultado de la evaluación a un fichero. Despúes, ejecutando el segundo script, obtenemos el fichero `testresults.txt`, dónde se almacenan los valores máximos obtenidos y los parámetros que los han logrado. 
+
+    La optimización consiste en ir cambiando la regla de decisión de sonoridad en `get_pitch`, e ir ampliando o reduciendo el rango de valores de los thresholds para los que se ejecuta el programa con tal de ir acercándonos al valor óptimo. El fichero donde se guardan los distintos máximos para cada configuración del detector de sonoridad no se sobreescribe, con tal de poder usar las distintas pruebas como referencia, también a modo de memoria.
+
   * Cualquier otra técnica que se le pueda ocurrir o encuentre en la literatura.
 
   Encontrará más información acerca de estas técnicas en las [Transparencias del Curso](https://atenea.upc.edu/pluginfile.php/2908770/mod_resource/content/3/2b_PS%20Techniques.pdf)
