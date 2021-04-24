@@ -74,13 +74,13 @@ Ejercicios básicos
     y el *score* TOTAL proporcionados por `pitch_evaluate` en la evaluación de la base de datos 
 	`pitch_db/train`.
 
-**Apartado**                     |**Valor**              
-:-------------------------------: | :----------------------------------: 
-*Number of frames*               |*8446 = 5367 unvoiced + 3079 voiced*                       
-*Unvoiced frames as voiced*      |*337/5367 (6.28 %)*                   
-*Gross voiced errors (+20.00 %)* |*445/3079 (14.45 %)*
-*MSE of fine errors*             |*2.06 %*
-*TOTAL*                          |*87.92 %*
+    **Apartado**                   |**Valor**              
+    -------------------------------| :----------------------------------: 
+    Number of frames               |8446 = 5367 unvoiced + 3079 voiced                       
+    Unvoiced frames as voiced      |337/5367 (6.28 %)                     
+    Gross voiced errors (+20.00 %) |445/3079 (14.45 %)
+    MSE of fine errors             |2.06 %
+    TOTAL                          |87.92 %
 
    * Inserte una gráfica en la que se vea con claridad el resultado de su detector de pitch junto al del
      detector de Wavesurfer. Aunque puede usarse Wavesurfer para obtener la representación, se valorará
