@@ -28,9 +28,26 @@ Ejercicios básicos
 
 	 NOTA: es más que probable que tenga que usar Python, Octave/MATLAB u otro programa semejante para hacerlo. Se valorará la utilización de la librería matplotlib de Python.
 
-   * Determine el mejor candidato para el periodo de pitch localizando el primer máximo secundario de la autocorrelación. Inserte a continuación el código correspondiente.
+   <img src="img/EB1-2.png" align="center">
+
+   * Determine el mejor candidato para el periodo de pitch localizando el primer máximo secundario de la
+     autocorrelación. Inserte a continuación el código correspondiente.
+     
+    ```c++
+    for (iR = r.begin() + npitch_min; iR < r.begin() + npitch_max; iR++) {
+      if (*iR > *iRMax) {
+        iRMax = iR;
+      }
+    }
+    ```
 
    * Implemente la regla de decisión sonoro o sordo e inserte el código correspondiente.
+
+   ```c++
+   bool PitchAnalyzer::unvoiced(float pot, float r1norm, float rmaxnorm) const {
+    return (pot < this->pth && rmaxnorm < this->dth);
+   }
+   ```
 
 - Una vez completados los puntos anteriores, dispondrá de una primera versión del detector de pitch. El 
   resto del trabajo consiste, básicamente, en obtener las mejores prestaciones posibles con él.
@@ -54,7 +71,18 @@ Ejercicios básicos
   
   * Optimice los parámetros de su sistema de detección de pitch e inserte una tabla con las tasas de error
     y el *score* TOTAL proporcionados por `pitch_evaluate` en la evaluación de la base de datos 
-	`pitch_db/train`..
+	`pitch_db/train`.
+
+  Esta tabla corresponde a los resultados obtenidos con la implementación del ejercicio básico, y no contempla las mejoras propuestas en la ampliación.
+
+    **Apartado**                   |**Valor**              
+    -------------------------------| :----------------------------------: 
+    Number of frames               |8446 = 5367 unvoiced + 3079 voiced                       
+    Unvoiced frames as voiced      |337/5367 (6.28 %)                     
+    Voiced frames as unvoiced:     |445/3079 (14.45 %)
+    Gross voiced errors (+20.00 %) |17/2634 (0.65 %)
+    MSE of fine errors             |2.06 %
+    TOTAL                          |87.92 %
 
    * Inserte una gráfica en la que se vea con claridad el resultado de su detector de pitch junto al del
      detector de Wavesurfer. Aunque puede usarse Wavesurfer para obtener la representación, se valorará
@@ -74,6 +102,18 @@ Ejercicios de ampliación
   * Inserte un *pantallazo* en el que se vea el mensaje de ayuda del programa y un ejemplo de utilización
     con los argumentos añadidos.
 
+    <img src="img/EA1-1.PNG" align="center">
+
+    Tenemos 3 parámetros correspondientes a thresholds para la potencia, r[1]/r[0] y r[lag]/r[0]. De estos, sólo el primero y el último se usan para detectar la sonoridad, el segundo se ha implementado para provar los valores óptimos y realizar futuras pruebas. En *default* tenemos los valores óptimos, de manera que si el programa se ejecuta sin argumentos, va a dar el mejor resultado.
+
+    Como ejemplo, vamos a hacer una prueba con valores distintos a los óptimos, con el objetivo de comprobar el correcto funcionamiento de las opciones.
+
+    <img src="img/EA1-2.PNG" align="center">
+
+    <img src="img/EA1-3.PNG" align="center">
+
+    Vemos cómo usando un threshold de potencia de -3 dB y uno para r[lag]/r[0] de 0.2 obtenemos una puntuación total dos décimas menor en tanto por ciento.
+
 - Implemente las técnicas que considere oportunas para optimizar las prestaciones del sistema de detección
   de pitch.
 
@@ -85,6 +125,11 @@ Ejercicios de ampliación
     (AMDF), etc.
   * Optimización **demostrable** de los parámetros que gobiernan el detector, en concreto, de los que
     gobiernan la decisión sonoro/sordo.
+
+    Para optimizar los parámetros hemos usado los scripts `optimize_vad.sh` y `getBestParameters.m`, aprovechando buena parte de ellos de la práctica anterior. El primer script ejecuta varias veces `get_pitch` y `pitch_evaluate` para distintos valores de los 3 thresholds comentados anteriormente, y pasa el resultado de la evaluación a un fichero. Despúes, ejecutando el segundo script, obtenemos el fichero `testresults.txt`, dónde se almacenan los valores máximos obtenidos y los parámetros que los han logrado. 
+
+    La optimización consiste en ir cambiando la regla de decisión de sonoridad en `get_pitch`, e ir ampliando o reduciendo el rango de valores de los thresholds para los que se ejecuta el programa con tal de ir acercándonos al valor óptimo. El fichero donde se guardan los distintos máximos para cada configuración del detector de sonoridad no se sobreescribe, con tal de poder usar las distintas pruebas como referencia, también a modo de memoria.
+
   * Cualquier otra técnica que se le pueda ocurrir o encuentre en la literatura.
 
   Encontrará más información acerca de estas técnicas en las [Transparencias del Curso](https://atenea.upc.edu/pluginfile.php/2908770/mod_resource/content/3/2b_PS%20Techniques.pdf)

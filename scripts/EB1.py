@@ -1,24 +1,30 @@
 import matplotlib.pyplot as plt
 import soundfile as sf 
 import numpy as np 
+import scipy.signal as sc
 
-plt.figure(1)
-senyalwav, fmwav = sf.read('PAV_2310_0.wav')
+f1 = plt.figure(1)
+senyalwav, fmwav = sf.read('voiced_seg.wav')
 twav = np.arange(0, len(senyalwav))/fmwav
 plt.plot(twav, senyalwav)
+plt.grid(b=None, which='major', axis='both')
 plt.show()
 
-plt.figure(2)
-senyalau, fmau = sf.read('sox-PAV_2310_0.au')
-tau = np.arange(0, len(senyalau))/fmau
-plt.plot(tau, senyalau)
+f2 = plt.figure(2)
+correlation = sc.correlate(senyalwav, senyalwav, mode='same', method='auto')
+plt.plot(twav, correlation)
+plt.grid(b=None, which='major', axis='both')
 plt.show()
 
-plt.figure(3)
 fig, axs = plt.subplots(2)
-fig.suptitle('Original vs sox')
+minor_ticks = np.arange(0, len(senyalwav)/fmwav, 0.0005)
+fig.suptitle('Frame and autocorelation')
 axs[0].plot(twav, senyalwav)
-axs[0].set_title('Original .wav file')
-axs[1].plot(tau, senyalau)
-axs[1].set_title('Modified .au file')
+axs[0].set_title('Voiced frame')
+axs[0].grid(b=None, which='both', axis='both')
+axs[0].set_xticks(minor_ticks, minor=True)
+axs[1].plot(twav, correlation)
+axs[1].set_title('Correlation')
+axs[1].grid(b=None, which='both', axis='both')
+axs[1].set_xticks(minor_ticks, minor=True)
 plt.show()

@@ -20,7 +20,7 @@ namespace upc
       {
         r[l] += x[n] * x[n - l];
       }
-      /// \DONE Autocorrelation computed
+      /// \DONE Autocorrelation computed.
     }
 
     if (r[0] == 0.0F) //to avoid log() and divide zero
@@ -36,17 +36,17 @@ namespace upc
 
     switch (win_type)
     {
-      case HAMMING:
-        /// \TODO Implement the Hamming window
-        for (unsigned int n = 0; n < frameLen; n++)
-        {
-          window[n] = 0.54 - 0.46 * cos((2 * M_PI * n) / (frameLen));
-        }
-        break;
-        /// \DONE Hamming window computed
-      case RECT:
-      default:
-        window.assign(frameLen, 1);
+    case HAMMING:
+      /// \TODO Implement the Hamming window
+      for (unsigned int n = 0; n < frameLen; n++)
+      {
+        window[n] = 0.54 - 0.46 * cos((2 * M_PI * n) / (frameLen));
+      }
+      break;
+      /// \DONE Hamming window computed
+    case RECT:
+    default:
+      window.assign(frameLen, 1);
     }
   }
 
@@ -95,7 +95,7 @@ namespace upc
     ///    - The lag corresponding to the maximum value of the pitch.
     ///	   .
     /// In either case, the lag should not exceed that of the minimum value of the pitch.
-    /// \DONE Lag found
+    /// \DONE Lag found using iterators.
 
     for (iR = r.begin() + npitch_min; iR < r.begin() + npitch_max; iR++)
     {
@@ -103,23 +103,23 @@ namespace upc
       {
         iRMax = iR;
       }
-    }
 
-    unsigned int lag = iRMax - r.begin();
+      unsigned int lag = iRMax - r.begin();
 
-    float pot = 10 * log10(r[0]);
+      float pot = 10 * log10(r[0]);
 
-    //You can print these (and other) features, look at them using wavesurfer
-    //Based on that, implement a rule for unvoiced
-    //change to #if 1 and compile
+      //You can print these (and other) features, look at them using wavesurfer
+      //Based on that, implement a rule for unvoiced
+      //change to #if 1 and compile
 #if 0
     if (r[0] > 0.0F)
       cout << pot << '\t' << r[1]/r[0] << '\t' << r[lag]/r[0] << endl;
 #endif
 
-    if (unvoiced(pot, r[1] / r[0], r[lag] / r[0]))
-      return 0;
-    else
-      return (float)samplingFreq / (float)lag;
+      if (unvoiced(pot, r[1] / r[0], r[lag] / r[0]))
+        return 0;
+      else
+        return (float)samplingFreq / (float)lag;
+    }
   }
 }
