@@ -47,7 +47,9 @@ Ejercicios básicos
    * Implemente la regla de decisión sonoro o sordo e inserte el código correspondiente.
 
    ```c++
-   return (pot < this->pth && rmaxnorm < this->dth);
+   bool PitchAnalyzer::unvoiced(float pot, float r1norm, float rmaxnorm) const {
+    return (pot < this->pth && rmaxnorm < this->dth);
+   }
    ```
 
 - Una vez completados los puntos anteriores, dispondrá de una primera versión del detector de pitch. El 
@@ -103,15 +105,15 @@ Ejercicios de ampliación
   * Inserte un *pantallazo* en el que se vea el mensaje de ayuda del programa y un ejemplo de utilización
     con los argumentos añadidos.
 
-    <img src="img/EA1-1.png" align="center">
+    <img src="img/EA1-1.PNG" align="center">
 
     Tenemos 3 parámetros correspondientes a thresholds para la potencia, r[1]/r[0] y r[lag]/r[0]. De estos, sólo el primero y el último se usan para detectar la sonoridad, el segundo se ha implementado para provar los valores óptimos y realizar futuras pruebas. En *default* tenemos los valores óptimos, de manera que si el programa se ejecuta sin argumentos, va a dar el mejor resultado.
 
     Como ejemplo, vamos a hacer una prueba con valores distintos a los óptimos, con el objetivo de comprobar el correcto funcionamiento de las opciones.
 
-    <img src="img/EA1-2.png" align="center">
+    <img src="img/EA1-2.PNG" align="center">
 
-    <img src="img/EA1-3.png" align="center">
+    <img src="img/EA1-3.PNG" align="center">
 
     Vemos cómo usando un threshold de potencia de -3 dB y uno para r[lag]/r[0] de 0.2 obtenemos una puntuación total dos décimas menor en tanto por ciento.
 
