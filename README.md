@@ -14,11 +14,17 @@ Ejercicios básicos
   `get_pitch`.
 
    * Complete el cálculo de la autocorrelación e inserte a continuación el código correspondiente.
+
     for (unsigned int l = 0; l < r.size(); ++l) {
+
       r[l] = 0;
+
       for (unsigned int n = l; n < x.size(); ++n) {
+
         r[l] += x[n]*x[n-l];
+
       }
+      
     }
 
    * Inserte una gŕafica donde, en un *subplot*, se vea con claridad la señal temporal de un segmento de
