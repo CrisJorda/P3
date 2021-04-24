@@ -16,7 +16,7 @@ namespace upc {
       for (unsigned int n = l; n < x.size(); ++n) {
         r[l] += x[n]*x[n-l];
       }
-      /// \DONE Autocorrelation computed
+      /// \DONE Autocorrelation computed.
     }
 
     if (r[0] == 0.0F) //to avoid log() and divide zero 
@@ -81,7 +81,7 @@ namespace upc {
 	///    - The lag corresponding to the maximum value of the pitch.
     ///	   .
 	/// In either case, the lag should not exceed that of the minimum value of the pitch.
-  /// \DONE Lag found
+  /// \DONE Lag found using iterators.
 
   for (iR = r.begin() + npitch_min; iR < r.begin() + npitch_max; iR++) {
     if (*iR > *iRMax) {

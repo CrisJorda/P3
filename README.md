@@ -31,10 +31,24 @@ Ejercicios básicos
 	 NOTA: es más que probable que tenga que usar Python, Octave/MATLAB u otro programa semejante para
 	 hacerlo. Se valorará la utilización de la librería matplotlib de Python.
 
+   <img src="img/EB1-2.png" align="center">
+
    * Determine el mejor candidato para el periodo de pitch localizando el primer máximo secundario de la
      autocorrelación. Inserte a continuación el código correspondiente.
+     
+    ```c++
+    for (iR = r.begin() + npitch_min; iR < r.begin() + npitch_max; iR++) {
+      if (*iR > *iRMax) {
+        iRMax = iR;
+      }
+    }
+    ```
 
    * Implemente la regla de decisión sonoro o sordo e inserte el código correspondiente.
+
+   ```c++
+   return (pot < this->pth && rmaxnorm < this->dth);
+   ```
 
 - Una vez completados los puntos anteriores, dispondrá de una primera versión del detector de pitch. El 
   resto del trabajo consiste, básicamente, en obtener las mejores prestaciones posibles con él.
