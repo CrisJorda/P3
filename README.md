@@ -62,14 +62,14 @@ Ejercicios básicos
 
     Para poder visualizar los datos requeridos con `wavesurfer`, hemos editado pitch_analyzer.cpp para que nos dé como output un fichero con los valores de potencia, autocorrelación normalizada de uno y autocorrelación en su máximo secundario. 
     
-    <img src="outputwavesurfer.PNG" align="center">
+    <img src="img/outputwavesurfer.PNG" align="center">
 
     Después hemos recortado este fichero para obtener 3 ficheros distintos, cada uno con los datos correspondientes: 
-     <img src="codeforwavesurfer.PNG" align="center">
+     <img src="img/codeforwavesurfer.PNG" align="center">
 
     Por último lo hemos visualizado con `wavesurfer`. De arriba a abajo se encuentran los gráficos correspondientes a: potencia de la señal,  autocorrelación normalizada de uno, autocorrelación en su máximo secundario y por último, la señal en questión. 
 
-   <img src="graphwave.PNG" align="center">
+   <img src="img/graphwave.PNG" align="center">
 
   Podemos ver que los tramos sonoros presentan ratios de autocorrelación cercanos a 1, mientras en el tramos sordos, estas ratios tienden a 0. Respecto a la potencia, esta también aumenta en tramos sonoros respecto a los tramos sordos. 
 
@@ -84,7 +84,7 @@ Ejercicios básicos
 	    su resultado con el obtenido por la mejor versión de su propio sistema.  Inserte una gráfica
 		ilustrativa del resultado de ambos detectores.
 
-      <img src="pitchwave.PNG" align="center">
+      <img src="img/pitchwave.PNG" align="center">
 
       En la imagen podemos ver, de arriba a abajo: la detección de pitch propuesta por wavesurfer, la detección de pitch de nuestro detector y por último la señal en questión. Nuestro detector estima bastante bien qué tramos son sordos y qué tramos sonoros, aunque a veces detecta tramos sonoros que wavesurfer analiza como tramos sordos sin pitch.
   
@@ -118,7 +118,7 @@ Esta segunda tabla corresponde a las mejoras obtenidas gracias a la implementaci
      detector de Wavesurfer. Aunque puede usarse Wavesurfer para obtener la representación, se valorará
 	 el uso de alternativas de mayor calidad (particularmente Python).
 
-      <img src="graphpitchcompare.PNG" align="center">
+      <img src="img/graphpitchcompare.PNG" align="center">
    
 
 Ejercicios de ampliación
