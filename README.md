@@ -60,7 +60,22 @@ Ejercicios básicos
 		(r[0]), la autocorrelación normalizada de uno (r1norm = r[1] / r[0]) y el valor de la
 		autocorrelación en su máximo secundario (rmaxnorm = r[lag] / r[0]).
 
+    Para poder visualizar los datos requeridos con `wavesurfer`, hemos editado pitch_analyzer.cpp para que nos dé como output un fichero con los valores de potencia, autocorrelación normalizada de uno y autocorrelación en su máximo secundario. 
+    
+    <img src="outputwavesurfer.PNG" align="center">
+
+    Después hemos recortado este fichero para obtener 3 ficheros distintos, cada uno con los datos correspondientes: 
+     <img src="codeforwavesurfer.PNG" align="center">
+
+    Por último lo hemos visualizado con `wavesurfer`. De arriba a abajo se encuentran los gráficos correspondientes a: potencia de la señal,  autocorrelación normalizada de uno, autocorrelación en su máximo secundario y por último, la señal en questión. 
+
+   <img src="graphwave.PNG" align="center">
+
+  Podemos ver que los tramos sonoros presentan ratios de autocorrelación cercanos a 1, mientras en el tramos sordos, estas ratios tienden a 0. Respecto a la potencia, esta también aumenta en tramos sonoros respecto a los tramos sordos. 
+
 		Puede considerar, también, la conveniencia de usar la tasa de cruces por cero.
+
+    Tal y como hemos visto en teoría, la tasa de cruces por 0 es más elevada en tramos sordos que sonoros, sin embargo, no hemos implementado esta modalidad en nuestro detector. 
 
 	    Recuerde configurar los paneles de datos para que el desplazamiento de ventana sea el adecuado, que
 		en esta práctica es de 15 ms.
@@ -68,6 +83,10 @@ Ejercicios básicos
       - Use el detector de pitch implementado en el programa `wavesurfer` en una señal de prueba y compare
 	    su resultado con el obtenido por la mejor versión de su propio sistema.  Inserte una gráfica
 		ilustrativa del resultado de ambos detectores.
+
+      <img src="pitchwave.PNG" align="center">
+
+      En la imagen podemos ver, de arriba a abajo: la detección de pitch propuesta por wavesurfer, la detección de pitch de nuestro detector y por último la señal en questión. Nuestro detector estima bastante bien qué tramos son sordos y qué tramos sonoros, aunque a veces detecta tramos sonoros que wavesurfer analiza como tramos sordos sin pitch.
   
   * Optimice los parámetros de su sistema de detección de pitch e inserte una tabla con las tasas de error
     y el *score* TOTAL proporcionados por `pitch_evaluate` en la evaluación de la base de datos 
@@ -84,9 +103,22 @@ Ejercicios básicos
     MSE of fine errors             |2.06 %
     TOTAL                          |87.92 %
 
+Esta segunda tabla corresponde a las mejoras obtenidas gracias a la implementación de la ventana rectangular y el método de preprocesado Center Clipping: 
+
+    **Apartado**                   |**Valor**              
+    -------------------------------| :----------------------------------: 
+    Number of frames               |8446 = 5367 unvoiced + 3079 voiced                       
+    Unvoiced frames as voiced      |325/5367 (6.28 %)                     
+    Voiced frames as unvoiced:     |445/3079 (14.45 %)
+    Gross voiced errors (+20.00 %) |17/2634 (0.65 %)
+    MSE of fine errors             |2.06 %
+    TOTAL                          |88.06 %
+
    * Inserte una gráfica en la que se vea con claridad el resultado de su detector de pitch junto al del
      detector de Wavesurfer. Aunque puede usarse Wavesurfer para obtener la representación, se valorará
 	 el uso de alternativas de mayor calidad (particularmente Python).
+
+      <img src="graphpitchcompare.PNG" align="center">
    
 
 Ejercicios de ampliación
@@ -129,6 +161,10 @@ Ejercicios de ampliación
     Para optimizar los parámetros hemos usado los scripts `optimize_vad.sh` y `getBestParameters.m`, aprovechando buena parte de ellos de la práctica anterior. El primer script ejecuta varias veces `get_pitch` y `pitch_evaluate` para distintos valores de los 3 thresholds comentados anteriormente, y pasa el resultado de la evaluación a un fichero. Despúes, ejecutando el segundo script, obtenemos el fichero `testresults.txt`, dónde se almacenan los valores máximos obtenidos y los parámetros que los han logrado. 
 
     La optimización consiste en ir cambiando la regla de decisión de sonoridad en `get_pitch`, e ir ampliando o reduciendo el rango de valores de los thresholds para los que se ejecuta el programa con tal de ir acercándonos al valor óptimo. El fichero donde se guardan los distintos máximos para cada configuración del detector de sonoridad no se sobreescribe, con tal de poder usar las distintas pruebas como referencia, también a modo de memoria.
+
+    Hemos implementado el center clipping de forma no biyectiva, sin utilizar offsets, ya que hemos encontrado que daba mejores resultados. Para encontrar el valor óptimo, hemos usado los scripts mencionados. El código queda de la siguiente forma: 
+
+      <img src="img/centerclipping.PNG" align="center">
 
   * Cualquier otra técnica que se le pueda ocurrir o encuentre en la literatura.
 
