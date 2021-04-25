@@ -123,9 +123,9 @@ Ejercicios de ampliación
   * Inserte un *pantallazo* en el que se vea el mensaje de ayuda del programa y un ejemplo de utilización
     con los argumentos añadidos.
 
-    <img src="img/EA1-1.PNG" align="center">
+    <img src="img/help.PNG" align="center">
 
-    Tenemos 3 parámetros correspondientes a thresholds para la potencia, r[1]/r[0] y r[lag]/r[0]. De estos, sólo el primero y el último se usan para detectar la sonoridad, el segundo se ha implementado para provar los valores óptimos y realizar futuras pruebas. En *default* tenemos los valores óptimos, de manera que si el programa se ejecuta sin argumentos, va a dar el mejor resultado.
+    Tenemos 4 parámetros correspondientes a thresholds para la potencia, r[1]/r[0], r[lag]/r[0] y el center clipping. De estos, sólo el primero y el último se usan para detectar la sonoridad, el segundo se ha implementado para provar los valores óptimos y realizar futuras pruebas. El último se usa en el preprocesado de la señal. En *default* tenemos los valores óptimos, de manera que si el programa se ejecuta sin argumentos, va a dar el mejor resultado.
 
     Como ejemplo, vamos a hacer una prueba con valores distintos a los óptimos, con el objetivo de comprobar el correcto funcionamiento de las opciones.
 
@@ -133,7 +133,7 @@ Ejercicios de ampliación
 
     <img src="img/EA1-3.PNG" align="center">
 
-    Vemos cómo usando un threshold de potencia de -3 dB y uno para r[lag]/r[0] de 0.2 obtenemos una puntuación total dos décimas menor en tanto por ciento.
+    Vemos cómo usando un threshold de potencia de -3 dB, uno para r[lag]/r[0] de 0.2, y el valor default del center clipping obtenemos una puntuación total algo menor.
 
 - Implemente las técnicas que considere oportunas para optimizar las prestaciones del sistema de detección
   de pitch.
@@ -158,7 +158,7 @@ Ejercicios de ampliación
 
     Hemos implementado el center clipping de forma no biyectiva, sin utilizar offsets, ya que hemos encontrado que daba mejores resultados. Para encontrar el valor óptimo, hemos usado los scripts mencionados. El código queda de la siguiente forma: 
 
-      <img src="img/centerclipping.PNG" align="center">
+    <img src="img/centerclipping.PNG" align="center">
 
 
 
@@ -167,14 +167,14 @@ Ejercicios de ampliación
 
 En esta tabla se pueden visualizar los resultados del detector correspondientes a las mejoras obtenidas gracias a la implementación de la ventana rectangular y el método de preprocesado Center Clipping: 
 
-  **Apartado**                   |**Valor**              
-  -------------------------------| :----------------------------------: 
-   Number of frames               |8446 = 5367 unvoiced + 3079 voiced                       
-   Unvoiced frames as voiced      |325/5367 (6.28 %)                     
-   Voiced frames as unvoiced:     |445/3079 (14.45 %)
-   Gross voiced errors (+20.00 %) |17/2634 (0.65 %)
-   MSE of fine errors             |2.06 %
-   TOTAL                          |88.06 %
+    **Apartado**                   |**Valor**              
+    -------------------------------| :----------------------------------: 
+    Number of frames               |8446 = 5367 unvoiced + 3079 voiced                       
+    Unvoiced frames as voiced      |325/5367 (6.28 %)                     
+    Voiced frames as unvoiced:     |445/3079 (14.45 %)
+    Gross voiced errors (+20.00 %) |17/2634 (0.65 %)
+    MSE of fine errors             |2.06 %
+    TOTAL                          |88.06 %
 
   También se valorará la realización de un estudio de los parámetros involucrados. Por ejemplo, si se opta
   por implementar el filtro de mediana, se valorará el análisis de los resultados obtenidos en función de
