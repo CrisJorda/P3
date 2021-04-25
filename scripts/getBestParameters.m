@@ -34,7 +34,7 @@ end
 fclose(data);
 
 optimumlist = fopen('../testresults.txt', 'a+');
-fprintf(optimumlist, 'rth = %0.2f\t pth = %0.2f\t dth = %0.3f\t cth = %0.2f\t====>\t %0.2f %%', maxrth, maxpth, maxdth, maxcth, maxResult);
+fprintf(optimumlist, 'rth = %0.2f\t pth = %0.2f\t dth = %0.3f\t cth = %0.4f\t====>\t %0.2f %%', maxrth, maxpth, maxdth, maxcth, maxResult);
 fprintf(optimumlist, '\n');
 fclose(optimumlist);
 
