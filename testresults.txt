@@ -61,5 +61,14 @@ rth = 0.90	 pth = 0.00	 dth = 0.700	 ====>	 85.67 %
 TEST 6: r1norm < this->rth && pot < this->pth
 rth = 0.90	 pth = 0.00	 dth = 0.000	 ====>	 85.18 %
 rth = 0.90	 pth = 4.00	 dth = 0.000	 ====>	 85.40 %
-rth = 0.00	 pth = 6.00	 dth = 0.475	 ====>	 87.92 %
-rth = 0.00	 pth = 6.00	 dth = 0.475	 cth = 0.00	====>	 88.06 %
+
+
+CLIPPING
+TEST 1: pot < this->pth && rmaxnorm < this->dth | RECTANGULAR Window
+rth = 0.00	 pth = 6.00	 dth = 0.475	 cth = 0.0001	====>	 88.06 %
+
+TEST 2: pot < this->pth && rmaxnorm < this->dth | HAMMING Window
+rth = 0.00	 pth = 6.00	 dth = 0.475	 cth = 0.0001	====>	 84.66 %
+rth = 0.00	 pth = 2.00	 dth = 0.475	 cth = 0.0001	====>	 84.69 %
+rth = 0.00	 pth = 2.00	 dth = 0.400	 cth = 0.0001	====>	 84.84 %
+rth = 0.00	 pth = 4.00	 dth = 0.400	 cth = 0.0001	====>	 84.90 %
