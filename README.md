@@ -103,23 +103,13 @@ Ejercicios básicos
     MSE of fine errors             |2.06 %
     TOTAL                          |87.92 %
 
-Esta segunda tabla corresponde a las mejoras obtenidas gracias a la implementación de la ventana rectangular y el método de preprocesado Center Clipping: 
-
-  **Apartado**                   |**Valor**              
-  -------------------------------| :----------------------------------: 
-   Number of frames               |8446 = 5367 unvoiced + 3079 voiced                       
-   Unvoiced frames as voiced      |325/5367 (6.28 %)                     
-   Voiced frames as unvoiced:     |445/3079 (14.45 %)
-   Gross voiced errors (+20.00 %) |17/2634 (0.65 %)
-   MSE of fine errors             |2.06 %
-   TOTAL                          |88.06 %
-
    * Inserte una gráfica en la que se vea con claridad el resultado de su detector de pitch junto al del
      detector de Wavesurfer. Aunque puede usarse Wavesurfer para obtener la representación, se valorará
 	 el uso de alternativas de mayor calidad (particularmente Python).
 
       <img src="img/graphpitchcompare.PNG" align="center">
    
+  En esta gráfica podemos ver más claramente lo que ya habíamos comentado anteriormente al visualizar la estimación de pitch en wavesurfer. Nuestro detector estima bastante bien qué tramos son sordos y qué tramos sonoros, aunque a veces detecta tramos sonoros que wavesurfer analiza como tramos sordos sin pitch. Estos tramos aparecen como picos, cosa que tiene sentido, ya que los tramos sordos se modelan como ruido, y el ruido es de alta frecuencia. 
 
 Ejercicios de ampliación
 ------------------------
@@ -175,10 +165,22 @@ Ejercicios de ampliación
   Incluya, a continuación, una explicación de las técnicas incorporadas al detector. Se valorará la
   inclusión de gráficas, tablas, código o cualquier otra cosa que ayude a comprender el trabajo realizado.
 
+En esta tabla se pueden visualizar los resultados del detector correspondientes a las mejoras obtenidas gracias a la implementación de la ventana rectangular y el método de preprocesado Center Clipping: 
+
+  **Apartado**                   |**Valor**              
+  -------------------------------| :----------------------------------: 
+   Number of frames               |8446 = 5367 unvoiced + 3079 voiced                       
+   Unvoiced frames as voiced      |325/5367 (6.28 %)                     
+   Voiced frames as unvoiced:     |445/3079 (14.45 %)
+   Gross voiced errors (+20.00 %) |17/2634 (0.65 %)
+   MSE of fine errors             |2.06 %
+   TOTAL                          |88.06 %
+
   También se valorará la realización de un estudio de los parámetros involucrados. Por ejemplo, si se opta
   por implementar el filtro de mediana, se valorará el análisis de los resultados obtenidos en función de
   la longitud del filtro.
    
+  Para la implementación del Center Clipping se ha hecho uso del script que ha hecho un cálculo del parámetro óptimo, que es el que se ha incluido en la implementación final. Se puede observar en el running del script, que el efecto del center clipping en la detección de pitch puede resultar en un empeoramiento si este es demasiado alto, ya que elimina información necesaria de la señal. El objetivo ha sido encontrar un valor que permitiera una mejor visualización de los picos sin llegar a eliminar picos importantes. 
 
 Evaluación *ciega* del detector
 -------------------------------
