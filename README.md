@@ -182,6 +182,8 @@ En esta tabla se pueden visualizar los resultados del detector correspondientes 
    
   Para la implementación del Center Clipping se ha hecho uso del script que ha hecho un cálculo del parámetro óptimo, que es el que se ha incluido en la implementación final. Se puede observar en el running del script, que el efecto del center clipping en la detección de pitch puede resultar en un empeoramiento si este es demasiado alto, ya que elimina información necesaria de la señal. El objetivo ha sido encontrar un valor que permitiera una mejor visualización de los picos sin llegar a eliminar picos importantes. 
 
+  Con relación al postprocesado de la señal, se había optado por el filtro de la mediana, pero se ha concluido que era innecesario, ya que este reduce solo los errores grotescos, que ya son significativamente reducidos al aplicar el resto de técnicas.
+
 Evaluación *ciega* del detector
 -------------------------------
 
