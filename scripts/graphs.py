@@ -2,13 +2,13 @@ import matplotlib.pyplot as plt
 import soundfile as sf
 import numpy as np
 
-//plt.figure(1)
+plt.figure(1)
 senyalwav = np.loadtxt('sb013.f0')
 twav = np.arange(0, len(senyalwav))
 plt.plot(twav, senyalwav)
 plt.show()
 
-//plt.figure(2)
+plt.figure(2)
 senyalwav2 = np.loadtxt('wavepitch.f0')
 twav2 = np.arange(0, len(senyalwav2))
 plt.plot(twav2, senyalwav2)

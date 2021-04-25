@@ -84,9 +84,9 @@ Ejercicios básicos
 	    su resultado con el obtenido por la mejor versión de su propio sistema.  Inserte una gráfica
 		ilustrativa del resultado de ambos detectores.
 
-      <img src="img/pitchwave.PNG" align="center">
+  <img src="img/pitchwave.PNG" align="center">
 
-      En la imagen podemos ver, de arriba a abajo: la detección de pitch propuesta por wavesurfer, la detección de pitch de nuestro detector y por último la señal en questión. Nuestro detector estima bastante bien qué tramos son sordos y qué tramos sonoros, aunque a veces detecta tramos sonoros que wavesurfer analiza como tramos sordos sin pitch.
+  En la imagen podemos ver, de arriba a abajo: la detección de pitch propuesta por wavesurfer, la detección de pitch de nuestro detector y por último la señal en questión. Nuestro detector estima bastante bien qué tramos son sordos y qué tramos sonoros, aunque a veces detecta tramos sonoros que wavesurfer analiza como tramos sordos sin pitch.
   
   * Optimice los parámetros de su sistema de detección de pitch e inserte una tabla con las tasas de error
     y el *score* TOTAL proporcionados por `pitch_evaluate` en la evaluación de la base de datos 
