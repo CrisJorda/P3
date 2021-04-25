@@ -8,6 +8,5 @@ GETF0="get_pitch"
         echo "$GETF0 $fwav $ff0"
         $GETF0 $fwav $ff0 > /dev/null || (echo "Error in $GETF0 $fwav $ff0"; exit 1)
     done
-done
 
 exit 0
