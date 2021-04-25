@@ -62,23 +62,22 @@ Ejercicios básicos
 
     Para poder visualizar los datos requeridos con `wavesurfer`, hemos editado pitch_analyzer.cpp para que nos dé como output un fichero con los valores de potencia, autocorrelación normalizada de uno y autocorrelación en su máximo secundario. 
     
-    <img src="img/outputwavesurfer.PNG" align="center">
+      <img src="img/outputwavesurfer.PNG" align="center">
 
     Después hemos recortado este fichero para obtener 3 ficheros distintos, cada uno con los datos correspondientes: 
      <img src="img/codeforwavesurfer.PNG" align="center">
 
     Por último lo hemos visualizado con `wavesurfer`. De arriba a abajo se encuentran los gráficos correspondientes a: potencia de la señal,  autocorrelación normalizada de uno, autocorrelación en su máximo secundario y por último, la señal en questión. 
 
-   <img src="img/graphwave.PNG" align="center">
+     <img src="img/graphwave.PNG" align="center">
 
-  Podemos ver que los tramos sonoros presentan ratios de autocorrelación cercanos a 1, mientras en el tramos sordos, estas ratios tienden a 0. Respecto a la potencia, esta también aumenta en tramos sonoros respecto a los tramos sordos. 
+    Podemos ver que los tramos sonoros presentan ratios de autocorrelación cercanos a 1, mientras en el tramos sordos, estas ratios tienden a 0. Respecto a la potencia, esta también aumenta en tramos sonoros respecto a los tramos sordos. 
 
-		Puede considerar, también, la conveniencia de usar la tasa de cruces por cero.
+	Puede considerar, también, la conveniencia de usar la tasa de cruces por cero.
 
     Tal y como hemos visto en teoría, la tasa de cruces por 0 es más elevada en tramos sordos que sonoros, sin embargo, no hemos implementado esta modalidad en nuestro detector. 
 
-	    Recuerde configurar los paneles de datos para que el desplazamiento de ventana sea el adecuado, que
-		en esta práctica es de 15 ms.
+	Recuerde configurar los paneles de datos para que el desplazamiento de ventana sea el adecuado, que	en esta práctica es de 15 ms.
 
       - Use el detector de pitch implementado en el programa `wavesurfer` en una señal de prueba y compare
 	    su resultado con el obtenido por la mejor versión de su propio sistema.  Inserte una gráfica
@@ -147,6 +146,11 @@ Ejercicios de ampliación
     (AMDF), etc.
   * Optimización **demostrable** de los parámetros que gobiernan el detector, en concreto, de los que
     gobiernan la decisión sonoro/sordo.
+  * Cualquier otra técnica que se le pueda ocurrir o encuentre en la literatura.
+
+  Encontrará más información acerca de estas técnicas en las [Transparencias del Curso](https://atenea.upc.edu/pluginfile.php/2908770/mod_resource/content/3/2b_PS%20Techniques.pdf)
+  y en [Spoken Language Processing](https://discovery.upc.edu/iii/encore/record/C__Rb1233593?lang=cat).
+  También encontrará más información en los anexos del enunciado de esta práctica.
 
     Para optimizar los parámetros hemos usado los scripts `optimize_vad.sh` y `getBestParameters.m`, aprovechando buena parte de ellos de la práctica anterior. El primer script ejecuta varias veces `get_pitch` y `pitch_evaluate` para distintos valores de los 3 thresholds comentados anteriormente, y pasa el resultado de la evaluación a un fichero. Despúes, ejecutando el segundo script, obtenemos el fichero `testresults.txt`, dónde se almacenan los valores máximos obtenidos y los parámetros que los han logrado. 
 
@@ -156,11 +160,7 @@ Ejercicios de ampliación
 
       <img src="img/centerclipping.PNG" align="center">
 
-  * Cualquier otra técnica que se le pueda ocurrir o encuentre en la literatura.
 
-  Encontrará más información acerca de estas técnicas en las [Transparencias del Curso](https://atenea.upc.edu/pluginfile.php/2908770/mod_resource/content/3/2b_PS%20Techniques.pdf)
-  y en [Spoken Language Processing](https://discovery.upc.edu/iii/encore/record/C__Rb1233593?lang=cat).
-  También encontrará más información en los anexos del enunciado de esta práctica.
 
   Incluya, a continuación, una explicación de las técnicas incorporadas al detector. Se valorará la
   inclusión de gráficas, tablas, código o cualquier otra cosa que ayude a comprender el trabajo realizado.
