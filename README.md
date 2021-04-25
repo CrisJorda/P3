@@ -105,14 +105,14 @@ Ejercicios básicos
 
 Esta segunda tabla corresponde a las mejoras obtenidas gracias a la implementación de la ventana rectangular y el método de preprocesado Center Clipping: 
 
-    **Apartado**                   |**Valor**              
-    -------------------------------| :----------------------------------: 
-    Number of frames               |8446 = 5367 unvoiced + 3079 voiced                       
-    Unvoiced frames as voiced      |325/5367 (6.28 %)                     
-    Voiced frames as unvoiced:     |445/3079 (14.45 %)
-    Gross voiced errors (+20.00 %) |17/2634 (0.65 %)
-    MSE of fine errors             |2.06 %
-    TOTAL                          |88.06 %
+  **Apartado**                   |**Valor**              
+  -------------------------------| :----------------------------------: 
+   Number of frames               |8446 = 5367 unvoiced + 3079 voiced                       
+   Unvoiced frames as voiced      |325/5367 (6.28 %)                     
+   Voiced frames as unvoiced:     |445/3079 (14.45 %)
+   Gross voiced errors (+20.00 %) |17/2634 (0.65 %)
+   MSE of fine errors             |2.06 %
+   TOTAL                          |88.06 %
 
    * Inserte una gráfica en la que se vea con claridad el resultado de su detector de pitch junto al del
      detector de Wavesurfer. Aunque puede usarse Wavesurfer para obtener la representación, se valorará
