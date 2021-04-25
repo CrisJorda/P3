@@ -91,7 +91,7 @@ Ejercicios básicos
     y el *score* TOTAL proporcionados por `pitch_evaluate` en la evaluación de la base de datos 
 	`pitch_db/train`.
 
-  Esta tabla corresponde a los resultados obtenidos con la implementación del ejercicio básico, y no contempla las mejoras propuestas en la ampliación.
+  Esta tabla corresponde a los resultados obtenidos con la implementación del ejercicio básico, y no contempla las mejoras propuestas en la ampliación (esa tabla está más adelante).
 
     **Apartado**                   |**Valor**              
     -------------------------------| :----------------------------------: 
@@ -125,7 +125,7 @@ Ejercicios de ampliación
 
     <img src="img/help.PNG" align="center">
 
-    Tenemos 4 parámetros correspondientes a thresholds para la potencia, r[1]/r[0], r[lag]/r[0] y el center clipping. De estos, sólo el primero y el último se usan para detectar la sonoridad, el segundo se ha implementado para provar los valores óptimos y realizar futuras pruebas. El último se usa en el preprocesado de la señal. En *default* tenemos los valores óptimos, de manera que si el programa se ejecuta sin argumentos, va a dar el mejor resultado.
+    Tenemos 4 parámetros correspondientes a thresholds para la potencia, r[1]/r[0], r[lag]/r[0] y el center clipping. De estos, sólo el primero y el tercero se usan para detectar la sonoridad, el segundo se ha implementado para probar los valores óptimos y realizar futuras pruebas. El último se usa en el preprocesado de la señal. En *default* tenemos los valores óptimos, de manera que si el programa se ejecuta sin argumentos, va a dar el mejor resultado.
 
     Como ejemplo, vamos a hacer una prueba con valores distintos a los óptimos, con el objetivo de comprobar el correcto funcionamiento de las opciones.
 
@@ -133,7 +133,7 @@ Ejercicios de ampliación
 
     <img src="img/EA1-3.PNG" align="center">
 
-    Vemos cómo usando un threshold de potencia de -3 dB, uno para r[lag]/r[0] de 0.2, y el valor default del center clipping obtenemos una puntuación total algo menor.
+    Vemos cómo usando un threshold de potencia de -3 dB, uno para r[lag]/r[0] de 0.2, y el valor default del center clipping obtenemos una puntuación total algo menor a la que podemos obtener implementando el preprocesado.
 
 - Implemente las técnicas que considere oportunas para optimizar las prestaciones del sistema de detección
   de pitch.
@@ -152,7 +152,7 @@ Ejercicios de ampliación
   y en [Spoken Language Processing](https://discovery.upc.edu/iii/encore/record/C__Rb1233593?lang=cat).
   También encontrará más información en los anexos del enunciado de esta práctica.
 
-    Para optimizar los parámetros hemos usado los scripts `optimize_vad.sh` y `getBestParameters.m`, aprovechando buena parte de ellos de la práctica anterior. El primer script ejecuta varias veces `get_pitch` y `pitch_evaluate` para distintos valores de los 3 thresholds comentados anteriormente, y pasa el resultado de la evaluación a un fichero. Despúes, ejecutando el segundo script, obtenemos el fichero `testresults.txt`, dónde se almacenan los valores máximos obtenidos y los parámetros que los han logrado. 
+    Para optimizar los parámetros hemos usado los scripts `optimize_vad.sh` y `getBestParameters.m`, aprovechando buena parte de ellos de la práctica anterior. El primer script ejecuta varias veces `get_pitch` y `pitch_evaluate` para distintos valores de los 4 thresholds comentados anteriormente, y pasa el resultado de la evaluación a un fichero. Despúes, ejecutando el segundo script, obtenemos el fichero `testresults.txt`, dónde se almacenan los valores máximos obtenidos y los parámetros que los han logrado. 
 
     La optimización consiste en ir cambiando la regla de decisión de sonoridad en `get_pitch`, e ir ampliando o reduciendo el rango de valores de los thresholds para los que se ejecuta el programa con tal de ir acercándonos al valor óptimo. El fichero donde se guardan los distintos máximos para cada configuración del detector de sonoridad no se sobreescribe, con tal de poder usar las distintas pruebas como referencia, también a modo de memoria.
 
@@ -167,14 +167,14 @@ Ejercicios de ampliación
 
 En esta tabla se pueden visualizar los resultados del detector correspondientes a las mejoras obtenidas gracias a la implementación de la ventana rectangular y el método de preprocesado Center Clipping: 
 
-    **Apartado**                   |**Valor**              
-    -------------------------------| :----------------------------------: 
-    Number of frames               |8446 = 5367 unvoiced + 3079 voiced                       
-    Unvoiced frames as voiced      |325/5367 (6.28 %)                     
-    Voiced frames as unvoiced:     |445/3079 (14.45 %)
-    Gross voiced errors (+20.00 %) |17/2634 (0.65 %)
-    MSE of fine errors             |2.06 %
-    TOTAL                          |88.06 %
+   **Apartado**                   |**Valor**              
+   -------------------------------| :----------------------------------: 
+   Number of frames               |8446 = 5367 unvoiced + 3079 voiced                       
+   Unvoiced frames as voiced      |325/5367 (6.28 %)                     
+   Voiced frames as unvoiced:     |445/3079 (14.45 %)
+   Gross voiced errors (+20.00 %) |17/2634 (0.65 %)
+   MSE of fine errors             |2.06 %
+   TOTAL                          |88.06 %
 
   También se valorará la realización de un estudio de los parámetros involucrados. Por ejemplo, si se opta
   por implementar el filtro de mediana, se valorará el análisis de los resultados obtenidos en función de
